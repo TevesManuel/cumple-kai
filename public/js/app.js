@@ -42,7 +42,7 @@ const material = new THREE.MeshNormalMaterial( {
     side: THREE.DoubleSide,
 } );
 const cube = new THREE.Mesh( geometry, material );
-// cube.position.y = -geometry.parameters.height / 8;
+cube.position.y = geometry.parameters.height / 2;
 scene.add( cube );
 
 camera.position.z = 5;
