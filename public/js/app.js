@@ -34,6 +34,11 @@ const renderer = new THREE.WebGLRenderer({
     alpha: true
 });
 renderer.setSize( window.innerWidth, window.innerHeight );
+renderer.domElement.style.position = 'absolute';
+renderer.domElement.style.top = '0px';
+renderer.domElement.style.left = '0px';
+renderer.domElement.style.width = '100vw';
+renderer.domElement.style.height = '100vh';
 document.body.appendChild( renderer.domElement );
 
 var ArToolkitSource = new THREEx.ArToolkitSource({
@@ -67,11 +72,11 @@ scene.visible = false;
 const geometry = new THREE.CubeGeometry( 1, 1, 1 );
 const material = new THREE.MeshNormalMaterial( {
     transparent:  true,
-    opacity: 0.5,
+    opacity: 1.0,
     side: THREE.DoubleSide,
 } );
 const cube = new THREE.Mesh( geometry, material );
-// cube.position.y = geometry.parameters.height / 2;
+cube.position.y = geometry.parameters.height / 2;
 scene.add( cube );
 
 camera.position.z = 5;
