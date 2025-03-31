@@ -75,9 +75,23 @@ const material = new THREE.MeshNormalMaterial( {
     opacity: 1.0,
     side: THREE.DoubleSide,
 } );
-const cube = new THREE.Mesh( geometry, material );
-cube.position.y = geometry.parameters.height / 2;
-scene.add( cube );
+const loader = new THREE.GLTFLoader();
+
+loader.load('/Duck.glb', function (gltf) {
+    const model = gltf.scene;
+    model.scale.set(1,1,1);
+    model.position.set(0, 0, 0);
+    scene.add(model);
+}, undefined, function (error) {
+    console.error('Error al cargar el modelo:', error);
+});
+
+const light = new THREE.AmbientLight(0xffffff, 1);
+scene.add(light);
+
+const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+directionalLight.position.set(1, 1, 1);
+scene.add(directionalLight);
 
 camera.position.z = 5;
 
