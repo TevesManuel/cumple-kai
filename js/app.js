@@ -63,7 +63,7 @@ ArToolkitContext.init(() => {
 
 var ArMarkerControls = new THREEx.ArMarkerControls(ArToolkitContext, camera, {
     type: 'pattern',
-    patternUrl: 'pattern-qrcode.patt',
+    patternUrl: 'pattern.patt',
     changeMatrixMode: 'cameraTransformMatrix',
 });
 
