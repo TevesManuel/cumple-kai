@@ -77,7 +77,7 @@ const material = new THREE.MeshNormalMaterial( {
 } );
 const loader = new THREE.GLTFLoader();
 
-loader.load('/Model.glb', function (gltf) {
+loader.load(window.location.pathname + 'Model.glb', function (gltf) {
     const model = gltf.scene;
     model.scale.set(1,1,1);
     model.position.set(0, 0, 0);
