@@ -70,17 +70,19 @@ var ArMarkerControls = new THREEx.ArMarkerControls(ArToolkitContext, camera, {
 scene.visible = false;
 
 const geometry = new THREE.CubeGeometry( 1, 1, 1 );
-const material = new THREE.MeshNormalMaterial( {
-    transparent:  true,
+const material = new THREE.MeshNormalMaterial({
+    transparent: true,
     opacity: 1.0,
     side: THREE.DoubleSide,
-} );
+});
+
 const loader = new THREE.GLTFLoader();
+let model;
 
 loader.load(window.location.pathname + 'Model.glb', function (gltf) {
-    const model = gltf.scene;
-    model.scale.set(1,1,1);
-    model.position.set(0, 0, 0);
+    model = gltf.scene;
+    model.scale.set(1, 1, 1);
+    model.position.set(0, geometry.parameters.height * 1.5, 0);
     scene.add(model);
 }, undefined, function (error) {
     console.error('Error al cargar el modelo:', error);
@@ -96,12 +98,15 @@ scene.add(directionalLight);
 camera.position.z = 5;
 
 function animate() {
-
-    requestAnimationFrame( animate );
+    requestAnimationFrame(animate);
     ArToolkitContext.update(ArToolkitSource.domElement);
     scene.visible = camera.visible;
-    renderer.render( scene, camera );
-
+    
+    if (model) {
+        model.rotation.y += 0.01;
+    }
+    
+    renderer.render(scene, camera);
 }
 
 animate();
